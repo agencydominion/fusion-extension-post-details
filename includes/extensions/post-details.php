@@ -27,8 +27,11 @@ function fsn_init_post_details() {
 		global $post;
 		
 		$output = '<div class="fsn-post-details '. fsn_style_params_class($atts) .'">';
-		
-			$output .= !empty($show_title) ? '<h1 class="post-title">'. $post->post_title .'</h1>' : '';
+			//prepend post details action hook
+	    	ob_start();
+	    	do_action('fsn_post_details_prepend', $post);
+	    	$output .= ob_get_clean();
+			$output .= !empty($show_title) ? apply_filters('fsn_post_details_title', '<h1 class="post-title">'. $post->post_title .'</h1>', $post) : '';
 			if (!empty($show_author) || !empty($show_date) || !empty($show_categories) || !empty($show_tags)) {
 				$author = !empty($show_author) ? true : false;
 				$date = !empty($show_date) ? true : false;
@@ -44,7 +47,10 @@ function fsn_init_post_details() {
 					$output .= fsn_get_post_meta($args);
 				$output .= '</footer>';
 			}
-		
+			//append post details action hook
+	    	ob_start();
+	    	do_action('fsn_post_details_append', $post);
+	    	$output .= ob_get_clean();
 		$output .= '</div>';
 		
 		return $output;
