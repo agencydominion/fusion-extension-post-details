@@ -6,7 +6,7 @@
  * Plugin Name: Fusion : Extension - Post Details
  * Plugin URI: http://fusion.1867dev.com
  * Description: Post Details Extension Package for Fusion.
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author: Agency Dominion
  * Author URI: http://agencydominion.com
  * License: GPL2
