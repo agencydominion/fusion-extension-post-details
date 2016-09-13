@@ -31,7 +31,7 @@ function fsn_init_post_details() {
 	    	ob_start();
 	    	do_action('fsn_post_details_prepend', $post);
 	    	$output .= ob_get_clean();
-			$output .= !empty($show_title) ? apply_filters('fsn_post_details_title', '<h1 class="post-title">'. $post->post_title .'</h1>', $post) : '';
+			$output .= !empty($show_title) ? apply_filters('fsn_post_details_title', '<h1 class="post-title">'. get_the_title($post) .'</h1>', $post) : '';
 			if (!empty($show_author) || !empty($show_date) || !empty($show_categories) || !empty($show_tags)) {
 				$author = !empty($show_author) ? true : false;
 				$date = !empty($show_date) ? true : false;
