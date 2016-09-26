@@ -4,9 +4,9 @@
  */
 /**
  * Plugin Name: Fusion : Extension - Post Details
- * Plugin URI: http://fusion.1867dev.com
+ * Plugin URI: http://www.agencydominion.com/fusion/
  * Description: Post Details Extension Package for Fusion.
- * Version: 1.1.1
+ * Version: 1.1.2
  * Author: Agency Dominion
  * Author URI: http://agencydominion.com
  * License: GPL2
@@ -39,11 +39,8 @@ class FusionExtensionPostDetails	{
 	 *
 	 */
 	 
-	 public function front_enqueue_scripts_styles() {
-		global $post;
-		if (has_shortcode($post->post_content, 'fsn_post_details')) {
-			wp_enqueue_style( 'fsn_post_details', plugin_dir_url( __FILE__ ) . 'includes/css/fusion-extension-post-details.css', false, '1.0.0' );
-		}
+	public function front_enqueue_scripts_styles() {
+		wp_enqueue_style( 'fsn_post_details', plugin_dir_url( __FILE__ ) . 'includes/css/fusion-extension-post-details.css', false, '1.0.0' );
 	}
 	
 }
