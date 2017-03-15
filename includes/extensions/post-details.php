@@ -32,6 +32,11 @@ function fsn_init_post_details() {
 				),
 				array(
 					'type' => 'checkbox',
+					'param_name' => 'show_excerpt',
+					'label' => __('Excerpt', 'fusion-extension-post-details')
+				),
+				array(
+					'type' => 'checkbox',
 					'param_name' => 'show_author',
 					'label' => __('Author', 'fusion-extension-post-details')
 				),
@@ -62,6 +67,7 @@ function fsn_init_post_details() {
 function fsn_post_details_shortcode( $atts ) {
 	extract( shortcode_atts( array(
 		'show_title' => '',
+		'show_excerpt' => '',
 		'show_author' => '',
 		'show_date' => '',
 		'show_categories' => '',
@@ -76,6 +82,10 @@ function fsn_post_details_shortcode( $atts ) {
     	do_action('fsn_post_details_prepend', $post);
     	$output .= ob_get_clean();
 		$output .= !empty($show_title) ? apply_filters('fsn_post_details_title', '<h1 class="post-title">'. get_the_title($post) .'</h1>', $post) : '';
+		if (!empty($show_excerpt)) {
+			$the_excerpt = get_the_excerpt($post);
+			$output .= apply_filters('fsn_post_details_excerpt', (!empty($the_excerpt) ? '<p class="post-excerpt">'. $the_excerpt .'</p>' : ''), $post);	
+		}
 		if (!empty($show_author) || !empty($show_date) || !empty($show_categories) || !empty($show_tags)) {
 			$author = !empty($show_author) ? true : false;
 			$date = !empty($show_date) ? true : false;
