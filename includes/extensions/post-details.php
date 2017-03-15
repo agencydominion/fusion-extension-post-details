@@ -82,7 +82,10 @@ function fsn_post_details_shortcode( $atts ) {
     	do_action('fsn_post_details_prepend', $post);
     	$output .= ob_get_clean();
 		$output .= !empty($show_title) ? apply_filters('fsn_post_details_title', '<h1 class="post-title">'. get_the_title($post) .'</h1>', $post) : '';
-		$output .= !empty($show_excerpt) ? apply_filters('fsn_post_details_excerpt', '<p class="post-excerpt">'. get_the_excerpt($post) .'</p>', $post) : '';
+		if (!empty($show_excerpt)) {
+			$the_excerpt = get_the_excerpt($post);
+			$output .= apply_filters('fsn_post_details_excerpt', (!empty($the_excerpt) ? '<p class="post-excerpt">'. $the_excerpt .'</p>' : ''), $post);	
+		}
 		if (!empty($show_author) || !empty($show_date) || !empty($show_categories) || !empty($show_tags)) {
 			$author = !empty($show_author) ? true : false;
 			$date = !empty($show_date) ? true : false;
